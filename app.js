@@ -29,6 +29,24 @@ app.get('/pengalaman', (req,res)=>{
 })
 
 
+app.get('/karyawan', async (req,res)=>{
+    const m_karyawan = require('./model/m_karyawan')
+    let dataview = {
+        semua_karyawan: await m_karyawan.get_semua_karyawan(),
+    }
+    res.render('karyawan/all', dataview)
+})
+
+
+app.get('/karyawan/detail', async (req,res)=>{
+    const m_karyawan = require('./model/m_karyawan')
+    let dataview = {
+        detail_karyawan: await m_karyawan.get_satu_karyawan(),
+    }
+    res.render('karyawan/detail', dataview)
+})
+
+
 app.listen(port, ()=>{
     console.log(`App sudah siap, buka http://localhost:${port}`)
 })
