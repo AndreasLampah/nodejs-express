@@ -1,44 +1,43 @@
-<h1> data seluruh karyawan</h1>
+<h1>Data Seluruh Karyawan PT Indo Teknik</h1>
 <hr><hr><br>
+<a href="/karyawan/tambah/<%= semua_karyawan[i].id %>">
+    <button>input karyawan baru</button>
+</a>
 <table border="1">
     <thead>
         <tr>
             <th>Nama</th>
-            <th>Alamat</th>
-            <th>Kontak</th>
-            <th>Gol_Darah</th>
             <th>Jenis Kelamin</th>
             <th>Departemen</th>
             <th>Jabatan</th>
-            <th>opsi</th>
+            <th>Opsi</th>
         </tr>
- </thead>
-<body>
+    </thead>
+    <tbody>
         <% for (const i in semua_karyawan) { %>
             <tr>
-                <td><%= semua_karyawan[i].nama%></td>
-                <td><%= semua_karyawan[i].alamat%></td>
-                <td><%= semua_karyawan[i].no_telepon%></td>
-                <td><%= semua_karyawan[i].gol_darah%></td>
-                <td><%= semua_karyawan[i].jenis_kelamin%></td>
-                <td><%= semua_karyawan[i].departemen_id%></td>
-                <td><%= semua_karyawan[i].jabatan_id%></td>
-                <td><button>deail</button></td>
+                <td><%= semua_karyawan[i].nama %></td>
+                <td><%= semua_karyawan[i].jenis_kelamin %></td>
+                <td><%= semua_karyawan[i].departemen_kode %></td>
+                <td><%= semua_karyawan[i].jabatan_nama %></td>
+                <td>
+                    <a href="/karyawan/detail/<%= semua_karyawan[i].id %>">
+                        <button>detail</button>
+                    </a>
+                </td>
             </tr>
-            <% } %>
+        <% } %>
 
 
-<% 
-//     for (const i in semua_karyawan) {
-//         __append(`<tr>`)
-//         __append(`<td>${semua_karyawan[i].nama}</td>`)
-//         __append(`<td>${semua_karyawan[i].alamat}</td>`)
-//         __append(`<td>${semua_karyawan[i].no_telepon}</td>`)
-//         __append(`<td>${semua_karyawan[i].gol_darah}</td>`)
-//         __append(`<td>${semua_karyawan[i].jenis_kelamin}</td>`)
-//         __append(`<td>${semua_karyawan[i].departemen_id}</td>`)
-//         __append(`<td>${semua_karyawan[i].jabatan_id}</td>`)
-//         __append(`</td>`)
-//     }
-// %>
-    </body>
+        <%#
+            for (const i in semua_karyawan) {
+                __append('<tr>')
+                __append(`<td>${semua_karyawan[i].nama}</td>`)
+                __append(`<td>${semua_karyawan[i].jenis_kelamin}</td>`)
+                __append(`<td>${semua_karyawan[i].departemen_kode}</td>`)
+                __append(`<td>${semua_karyawan[i].jabatan_nama}</td>`)
+                __append('</tr>')
+            }
+        %>
+    </tbody>
+</table>

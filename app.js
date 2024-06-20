@@ -3,6 +3,7 @@ const app       = express()
 const port      = 3000
 
 
+app.use( express.urlencoded({extended:false}) )
 app.set('view engine', 'ejs')   //setting penggunaan template engine untuk express
 app.set('views', './view-ejs')  //setting penggunaan folder untuk menyimpan file .ejs
 
@@ -45,6 +46,20 @@ app.get('/karyawan/detail/:id_karyawan', async (req,res)=>{
         detail_karyawan: await m_karyawan.get_satu_karyawan(id),
     }
     res.render('karyawan/detail', dataview)
+})
+
+
+app.get('/karyawan/tambah', async (req,res)=>{
+    res.render('karyawan/form-tambah')
+})
+
+
+app.post('/karyawan/proses-simpan', async (req,res)=>{
+    // ambil kiriman dari form html satu-satu
+    let nama_lengkap = req.body.nama_lengkap
+    let alamat = req.body.alamat
+    // ambil semuanya
+    res.send(req.body)
 })
 
 
