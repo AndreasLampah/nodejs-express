@@ -29,38 +29,14 @@ app.get('/pengalaman', (req,res)=>{
     })
 })
 
+const c_karyawan = require('./controller/c_karyawan')
 
-app.get('/karyawan', async (req,res)=>{
-    const m_karyawan = require('./model/m_karyawan')
-    let dataview = {
-        semua_karyawan: await m_karyawan.get_semua_karyawan(),
-    }
-    res.render('karyawan/all', dataview)
-})
-
-
-app.get('/karyawan/detail/:id_karyawan', async (req,res)=>{
-    const m_karyawan = require('./model/m_karyawan')
-    const id = req.params.id_karyawan
-    let dataview = {
-        detail_karyawan: await m_karyawan.get_satu_karyawan(id),
-    }
-    res.render('karyawan/detail', dataview)
-})
-
-
-app.get('/karyawan/tambah', async (req,res)=>{
-    res.render('karyawan/form-tambah')
-})
-
-
-app.post('/karyawan/proses-simpan', async (req,res)=>{
-    // ambil kiriman dari form html satu-satu
-    let nama_lengkap = req.body.nama_lengkap
-    let alamat = req.body.alamat
-    // ambil semuanya
-    res.send(req.body)
-})
+app.get('/karyawan', c_karyawan.index)
+app.get('/karyawan/detail/:id_karyawan', c_karyawan.detail)
+app.get('/karyawan/tambah', c_karyawan.tambah)
+app.post('/karyawan/proses-simpan', c_karyawan.proses_simpan)
+app.get('/karyawan/edit/:id_karyawan', c_karyawan.edit)
+app.post('/karyawan/proses-update/:id_karyawan', c_karyawan.proses_update)
 
 
 app.listen(port, ()=>{
